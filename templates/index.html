@@ -87,7 +87,7 @@
   //   }
 
   function leaveRoom(room) {
-  socket.emit('leave_room', { room, username }); // <-- use 'room' instead of 'currentRoom'
+  socket.emit('leave_room', { room : room, username: username }); // <-- use 'room' instead of 'currentRoom'
   fetch('/leave', {
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -99,19 +99,24 @@
       document.getElementById("messages").innerHTML = '';
       currentRoom = '';
     }
-    // Reload room list UI only (optional)
-    window.history.replaceState({}, '', window.location.pathname);
-    window.location.reload(); // this works, but you can also dynamically update the DOM if preferred
+    // // Reload room list UI only (optional)
+    // window.history.replaceState({}, '', window.location.pathname);
+    // window.location.reload(); // this works, but you can also dynamically update the DOM if preferred
+    window.location.href = "/";
   });
 }
 
     function loadchat(room) {
       if (currentRoom == room) return;
-      else if(currentRoom){
+      
+      if (currentRoom) {
+        socket.emit('leave_room', { room: currentRoom, username: username });
+        
         document.getElementById("chat-box").style.display = 'none';
         document.getElementById("current-room-name").innerText = '';
         document.getElementById("messages").innerHTML = '';
       }
+
       // Join new room
       currentRoom = room;
       socket.emit('join_room', { room, username });

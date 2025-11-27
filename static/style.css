@@ -109,3 +109,22 @@ body, html {
   #room-list button {
     box-sizing: border-box;
   }
+  /* Add these to style.css */
+.join {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+.leave {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+.delete {
+    background-color: #555555; /* Grey */
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+/* Update hover to be slightly darker/lighter */
+.join:hover { background-color: #45a049; }
+.leave:hover { background-color: #d32f2f; }
+.delete:hover { background-color: #333; }
