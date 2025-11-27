@@ -1,3 +1,6 @@
+import eventlet
+
+eventlet.monkey_patch()
 import sqlite3
 from datetime import UTC, datetime
 
